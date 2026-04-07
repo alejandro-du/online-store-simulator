@@ -1,0 +1,6 @@
+[submodule "java-backend"]
+	path = java-backend
+	url = https://github.com/alejandro-du/online-store-simulator-java-backend.git
+[submodule "svelte-frontend"]
+	path = svelte-frontend
+	url = https://github.com/alejandro-du/online-store-simulator-svelte-frontend.git
