@@ -1,0 +1,25 @@
+services:
+  java_backend:
+    container_name: java_backend
+    build:
+      context: ./java-backend
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    environment:
+      - SPRING_R2DBC_URL=r2dbc:mariadb://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - SPRING_R2DBC_USERNAME=${DB_USER}
+      - SPRING_R2DBC_PASSWORD=${DB_PASSWORD}
+      - SPRING_LIQUIBASE_URL=jdbc:mariadb://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - SPRING_LIQUIBASE_USER=${DB_USER}
+      - SPRING_LIQUIBASE_PASSWORD=${DB_PASSWORD}
+
+  svelte_frontend:
+    container_name: svelte_frontend
+    build:
+      context: ./svelte-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    depends_on:
+      - java_backend
