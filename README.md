@@ -71,7 +71,11 @@ SPRING_LIQUIBASE_PASSWORD=PASS
 
 You can use a MariaDB Cloud serverless instance (there is a free tier for testing). Create an instance, then copy its host, port, database name, username and password into your `.env` as shown above.
 
-If the provider requires TLS/extra parameters, prefer setting the full `SPRING_R2DBC_URL` and `SPRING_LIQUIBASE_URL` directly in the `.env` so you can include the required query parameters.
+If the provider requires TLS/extra parameters, you can set them after the value in the `DB_NAME` variable. For example:
+
+```env
+DB_NAME=demo?sslMode=trust
+```
 
 ## Running a local MariaDB (optional)
 
